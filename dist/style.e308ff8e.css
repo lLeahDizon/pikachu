@@ -1,17 +1,134 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background: #ffe600;
+  min-height: 100vh;
+}
+
 .skin {
   position: relative;
 }
 
-.san {
-  border: 10px solid red;
-  border-color: red transparent transparent;
+.nose {
+  border: 10px solid black;
+  border-color: black transparent transparent;
   border-bottom: none;
   width: 0;
   height: 0;
   position: relative;
   left: 50%;
-  margin-left: -5px;
-  top: 200px;
+  margin-left: -10px;
+  top: 145px;
+  z-index: 1;
+}
+
+.yuan {
+  position: absolute;
+  width: 20px;
+  height: 6px;
+  top: -16px;
+  left: -10px;
+  border-radius: 10px 10px 0 0;
+  background: black;
+}
+
+.eye {
+  border: 2px solid black;
+  width: 64px;
+  height: 64px;
+  position: absolute;
+  left: 50%;
+  top: 100px;
+  margin-left: -32px;
+  background: #2e2e2e;
+  border-radius: 50%;
+}
+
+.eye::before {
+  content: "";
+  display: block;
+  border: 3px solid black;
+  width: 30px;
+  height: 30px;
+  background: #ffffff;
+  border-radius: 50%;
+  position: relative;
+  left: 4px;
+  top: 2px;
+}
+
+.eye.left {
+  transform: translateX(-100px);
+}
+
+.eye.right {
+  transform: translateX(100px);
+}
+
+.mouth {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  left: 50%;
+  top: 170px;
+  margin-left: -100px;
+}
+
+.mouth .up {
+  position: relative;
+  top: -20px;
+}
+
+.mouth .up .lip {
+  position: absolute;
+  border: 5px solid black;
+  height: 30px;
+  width: 100px;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  left: 50%;
+  margin-left: -50px;
+}
+
+.mouth .up .lip.left {
+  border-left-color: transparent;
+  border-radius: 0 0 0 50px;
+  transform: rotate(-15deg) translateX(-53px);
+}
+
+.mouth .up .lip.left::before {
+  content: "";
+  display: block;
+  width: 7px;
+  height: 30px;
+  position: absolute;
+  right: -6px;
+  bottom: 0;
+  background: #ffe600;
+}
+
+.mouth .up .lip.right {
+  border-radius: 0 0 50px 0;
+  transform: rotate(15deg) translateX(53px);
+}
+
+.mouth .up .lip.right::before {
+  content: "";
+  display: block;
+  width: 7px;
+  height: 30px;
+  position: absolute;
+  left: -6px;
+  bottom: 0;
+  background: #ffe600;
 }
 
 
