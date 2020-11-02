@@ -134,60 +134,68 @@ var _css = _interopRequireDefault(require("./css"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var n = 0;
-demo.innerText = _css.default.substr(0, n);
-demo2.innerHTML = _css.default.substr(0, n);
-var time = 100;
+var player = {
+  n: 1,
+  time: 100,
+  ui: {
+    demo: document.querySelector("#demo"),
+    demo2: document.querySelector("#demo2")
+  },
+  events: {
+    "#btnPause": "pause",
+    "#btnPlay": "play",
+    "#btnSlow": "slow",
+    "#btnNormal": "normal",
+    "#btnFast": "fast"
+  },
+  id: undefined,
+  init: function init() {
+    player.ui.demo.innerText = _css.default.substr(0, player.n);
+    player.ui.demo2.innerHTML = _css.default.substr(0, player.n);
+    player.bindEvents();
+    player.play();
+  },
+  bindEvents: function bindEvents() {
+    for (var key in player.events) {
+      if (player.events.hasOwnProperty(key)) document.querySelector(key).onclick = player[player.events[key]];
+    } // 通过字符串取方法
 
-var run = function run() {
-  n += 1;
+  },
+  run: function run() {
+    player.n += 1;
 
-  if (n > _css.default.length) {
-    window.clearInterval(id);
-    return;
+    if (player.n > _css.default.length) {
+      window.clearInterval(player.id);
+      return;
+    }
+
+    player.ui.demo.innerText = _css.default.substr(0, player.n);
+    player.ui.demo2.innerHTML = _css.default.substr(0, player.n);
+    player.ui.demo.scrollTop = player.ui.demo.scrollHeight; // 布局可滚动最大高度
+  },
+  play: function play() {
+    player.id = setInterval(player.run, player.time);
+  },
+  pause: function pause() {
+    window.clearInterval(player.id);
+  },
+  slow: function slow() {
+    player.pause();
+    player.time = 300;
+    player.play();
+  },
+  normal: function normal() {
+    player.pause();
+    player.time = 100;
+    player.play();
+  },
+  fast: function fast() {
+    player.pause();
+    player.time = 0;
+    player.play();
   }
-
-  console.log(n + ":" + _css.default.substr(0, n));
-  demo.innerText = _css.default.substr(0, n);
-  demo2.innerHTML = _css.default.substr(0, n);
-  demo.scrollTop = demo.scrollHeight; // 布局可滚动最大高度
 };
-
-var play = function play() {
-  return setInterval(run, time);
-};
-
-var pause = function pause() {
-  window.clearInterval(id);
-};
-
-var id = play();
-
-btnPause.onclick = function () {
-  pause();
-};
-
-btnPlay.onclick = function () {
-  id = play();
-};
-
-btnSlow.onclick = function () {
-  pause();
-  time = 300;
-  id = play();
-};
-
-btnNormal.onclick = function () {
-  pause();
-  time = 100;
-  id = play();
-};
-
-btnFast.onclick = function () {
-  pause();
-  time = 0;
-  id = play();
-};
+player.init();
 },{"./css":"css.js"}],"../../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -216,7 +224,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "7374" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "5127" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
