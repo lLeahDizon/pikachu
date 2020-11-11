@@ -11,6 +11,10 @@ const string = `
   box-sizing: border-box;
 }
 
+#html {
+  background: #ffe600;
+}
+
 .skin {
   background: #ffe600;
   min-height: 50vh;
