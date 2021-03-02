@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 rm -rf dist/
-parcel build src/test.html --public-url . &&
+parcel build src/index.html --public-url . &&
 cd dist
 git init
 git add .
